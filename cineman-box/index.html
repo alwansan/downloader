@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AlBox</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="app-header" id="appHeader">
+        <div class="header-content">
+            <div class="header-logo">
+                <span class="logo-mark">▶</span>
+                <span class="logo-text">AlBox</span>
+            </div>
+            <div class="header-search-wrap">
+                <span class="material-icons-round si">search</span>
+                <input type="text" id="searchInput" class="search-input" placeholder="ابحث عن فيلم أو مسلسل...">
+                <button id="searchClearBtn" class="search-clear hidden">
+                    <span class="material-icons-round">close</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Filter bar - positioned by JS -->
+    <div id="filterBar" class="filter-bar hidden">
+        <button id="filterAll"    class="ftab active-ftab">الكل</button>
+        <button id="filterMovies" class="ftab">أفلام</button>
+        <button id="filterSeries" class="ftab">مسلسلات</button>
+    </div>
+
+    <main id="mainContent" class="main-content">
+
+        <!-- HOME -->
+        <div id="homeSection" class="sview">
+            <div id="homeList">
+                <div class="loading-block"><div class="spin"></div><p>جاري التحميل...</p></div>
+            </div>
+        </div>
+
+        <!-- SEARCH -->
+        <div id="searchSection" class="sview hidden">
+            <div id="searchList" class="cgrid"></div>
+            <div id="searchMore" class="lmore-wrap hidden">
+                <button id="searchMoreBtn" class="lmore-btn">
+                    <span class="material-icons-round">expand_more</span> عرض المزيد
+                </button>
+            </div>
+        </div>
+
+        <!-- GENRE -->
+        <div id="genreSection" class="sview hidden">
+            <div class="iheader">
+                <button class="back-btn" id="genreBack"><span class="material-icons-round">arrow_forward_ios</span> رجوع</button>
+                <h2 id="genreTitle" class="ititle"></h2>
+            </div>
+            <div id="genreList" class="cgrid"></div>
+            <div id="genreMore" class="lmore-wrap hidden">
+                <button id="genreMoreBtn" class="lmore-btn"><span class="material-icons-round">expand_more</span> عرض المزيد</button>
+            </div>
+        </div>
+
+        <!-- CATEGORY -->
+        <div id="categorySection" class="sview hidden">
+            <div class="iheader">
+                <button class="back-btn" id="categoryBack"><span class="material-icons-round">arrow_forward_ios</span> رجوع</button>
+                <h2 id="categoryTitle" class="ititle"></h2>
+            </div>
+            <div id="categoryList" class="cgrid"></div>
+            <div id="categoryMore" class="lmore-wrap hidden">
+                <button id="categoryMoreBtn" class="lmore-btn"><span class="material-icons-round">expand_more</span> عرض المزيد</button>
+            </div>
+        </div>
+
+        <!-- DETAILS -->
+        <div id="detailsSection" class="sview hidden">
+            <div id="detailsContent"></div>
+        </div>
+
+        <!-- PLAYER/QUALITY -->
+        <div id="playerSection" class="sview hidden">
+            <div id="playerContent"></div>
+        </div>
+
+        <!-- FAVORITES -->
+        <div id="favoritesSection" class="sview hidden">
+            <div class="iheader">
+                <h2 class="ititle fav-title">
+                    <span class="material-icons-round">favorite</span> المفضلة
+                </h2>
+            </div>
+            <div id="favoritesList" class="cgrid"></div>
+        </div>
+
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" id="navHome">
+            <span class="material-icons-round nav-icon">home</span>
+            <span class="nav-label">الرئيسية</span>
+        </a>
+        <a href="#" class="nav-item" id="navSearch">
+            <span class="material-icons-round nav-icon">search</span>
+            <span class="nav-label">بحث</span>
+        </a>
+        <a href="#" class="nav-item" id="navFavorites">
+            <span class="material-icons-round nav-icon">favorite_border</span>
+            <span class="nav-label">المفضلة</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
