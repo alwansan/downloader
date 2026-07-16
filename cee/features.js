@@ -64,10 +64,10 @@
     box.className = 'ep-search-box';
     box.innerHTML =
       '<div class="ep-search-row">' +
-      '  <span class="material-icons-round ep-search-icon">tag</span>' +
+      '  <span class="material-icons ep-search-icon">tag</span>' +
       '  <input type="number" inputmode="numeric" id="ep-search-single" class="ep-search-input" placeholder="ابحث برقم حلقة معينة...">' +
       '  <button type="button" id="ep-search-clear" class="ep-search-clear-btn" title="مسح البحث">' +
-      '    <span class="material-icons-round">close</span>' +
+      '    <span class="material-icons">close</span>' +
       '  </button>' +
       '</div>' +
       '<div class="ep-search-range-row">' +
@@ -79,7 +79,7 @@
       '</div>' +
       '<div id="ep-search-status" class="ep-search-status"></div>';
 
-    var titleEl = q('.seasons-title', seasonsList);
+    var titleEl = q('.seasons-title', seasonsList) || q('h3', seasonsList);
     if (titleEl && titleEl.nextSibling) {
       seasonsList.insertBefore(box, titleEl.nextSibling);
     } else if (titleEl) {
@@ -252,19 +252,19 @@
     bar.className = 'ep-nav-bar';
     bar.innerHTML =
       '<div class="ep-nav-info">' +
-      '  <span class="material-icons-round">ondemand_video</span>' +
+      '  <span class="material-icons">ondemand_video</span>' +
       '  <span id="ep-nav-title" class="ep-nav-title"></span>' +
       '</div>' +
       '<div class="ep-nav-controls">' +
-      '  <button type="button" id="ep-prev-btn" class="ep-nav-btn"><span class="material-icons-round">chevron_right</span> السابق</button>' +
-      '  <button type="button" id="ep-next-btn" class="ep-nav-btn">التالي <span class="material-icons-round">chevron_left</span></button>' +
+      '  <button type="button" id="ep-prev-btn" class="ep-nav-btn"><span class="material-icons">chevron_right</span> السابق</button>' +
+      '  <button type="button" id="ep-next-btn" class="ep-nav-btn">التالي <span class="material-icons">chevron_left</span></button>' +
       '</div>' +
       '<button type="button" id="ep-start-download-btn" class="ep-start-download-btn">' +
-      '  <span class="material-icons-round">download_for_offline</span> بدء التحميل' +
+      '  <span class="material-icons">download_for_offline</span> بدء التحميل' +
       '</button>' +
       '<div id="ep-download-status" class="ep-download-status"></div>';
 
-    var backBtn = q('.back-btn', section);
+    var backBtn = q('.back-btn', section) || q('button[onclick="handleGlobalBackButtonClick()"]', section);
     if (backBtn && backBtn.parentNode) {
       backBtn.parentNode.insertBefore(bar, backBtn.nextSibling);
     } else {

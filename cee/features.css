@@ -4,13 +4,15 @@
    يحتوي فقط على تنسيقات الميزات الإضافية:
    - صندوق البحث عن الحلقات (رقم واحد / نطاق من-إلى)
    - شريط التنقل بين الحلقات + زر بدء التحميل في صفحة الجودة
+   الألوان هنا مأخوذة مباشرة من نفس نظام ألوان style.css
+   (gray-800/900 + blue-400/600) حتى تتناسق بصرياً 100%.
    ============================================= */
 
 /* ---------- صندوق البحث عن الحلقات (داخل seasons-list) ---------- */
 .ep-search-box {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 0.5rem;
     padding: 12px;
     margin: 10px 0 14px;
     display: flex;
@@ -22,38 +24,38 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-sm);
+    background: #111827;
+    border: 1px solid #4b5563;
+    border-radius: 0.375rem;
     padding: 6px 10px;
 }
 
-.ep-search-icon { color: var(--text-muted); font-size: 20px; }
+.ep-search-icon { color: #9ca3af; font-size: 20px; }
 
 .ep-search-input {
     flex: 1;
     background: transparent;
     border: none;
     outline: none;
-    color: var(--text-primary);
-    font-family: var(--font);
+    color: #f3f4f6;
+    font-family: 'Tajawal', sans-serif;
     font-size: 14px;
     padding: 6px 4px;
     min-width: 0;
 }
 
-.ep-search-input::placeholder { color: var(--text-muted); }
+.ep-search-input::placeholder { color: #6b7280; }
 
 .ep-search-clear-btn {
     background: transparent;
     border: none;
-    color: var(--text-muted);
+    color: #9ca3af;
     display: flex;
     align-items: center;
     cursor: pointer;
     padding: 4px;
 }
-.ep-search-clear-btn:active { color: var(--accent); }
+.ep-search-clear-btn:active { color: #3b82f6; }
 
 .ep-search-range-row {
     display: flex;
@@ -64,45 +66,47 @@
 
 .ep-range-label {
     font-size: 12px;
-    color: var(--text-secondary);
+    color: #d1d5db;
     font-weight: 600;
 }
 
 .ep-range-input {
     flex: 1;
     min-width: 60px;
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-sm);
+    background: #111827;
+    border: 1px solid #4b5563;
+    border-radius: 0.375rem;
     padding: 8px 10px;
     text-align: center;
+    color: #f3f4f6;
 }
 
 .ep-range-btn {
-    background: var(--accent);
+    background: #3b82f6;
     color: #fff;
     border: none;
-    border-radius: var(--radius-sm);
+    border-radius: 0.375rem;
     padding: 8px 14px;
-    font-family: var(--font);
+    font-family: 'Tajawal', sans-serif;
     font-size: 13px;
     font-weight: 700;
     cursor: pointer;
     white-space: nowrap;
 }
+.ep-range-btn:hover { background: #2563eb; }
 .ep-range-btn:active { opacity: 0.85; transform: scale(0.97); }
 
 .ep-search-status {
     font-size: 12px;
-    color: var(--text-secondary);
+    color: #d1d5db;
     min-height: 14px;
 }
 
 /* ---------- شريط التنقل بين الحلقات + زر بدء التحميل (صفحة الجودة) ---------- */
 .ep-nav-bar {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 0.5rem;
     padding: 12px;
     margin-bottom: 14px;
     display: flex;
@@ -114,9 +118,9 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    color: var(--text-primary);
+    color: #f3f4f6;
 }
-.ep-nav-info .material-icons-round { color: var(--accent); }
+.ep-nav-info .material-icons { color: #60a5fa; }
 
 .ep-nav-title {
     font-size: 14px;
@@ -134,17 +138,18 @@
     align-items: center;
     justify-content: center;
     gap: 4px;
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-light);
-    color: var(--text-primary);
-    border-radius: var(--radius-sm);
+    background: #111827;
+    border: 1px solid #4b5563;
+    color: #f3f4f6;
+    border-radius: 0.375rem;
     padding: 9px 8px;
-    font-family: var(--font);
+    font-family: 'Tajawal', sans-serif;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
 }
-.ep-nav-btn:active { background: var(--accent-glow); border-color: var(--accent); }
+.ep-nav-btn:hover:not(:disabled) { background: #1f2937; border-color: #60a5fa; }
+.ep-nav-btn:active:not(:disabled) { background: rgba(59, 130, 246, 0.2); border-color: #3b82f6; }
 .ep-nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
 .ep-start-download-btn {
@@ -152,21 +157,22 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    background: var(--accent);
+    background: #3b82f6;
     color: #fff;
     border: none;
-    border-radius: var(--radius-sm);
+    border-radius: 0.375rem;
     padding: 11px 14px;
-    font-family: var(--font);
+    font-family: 'Tajawal', sans-serif;
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
 }
+.ep-start-download-btn:hover { background: #2563eb; }
 .ep-start-download-btn:active { opacity: 0.85; transform: scale(0.98); }
 
 .ep-download-status {
     font-size: 12px;
-    color: var(--text-secondary);
+    color: #d1d5db;
     min-height: 14px;
     text-align: center;
 }
