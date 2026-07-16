@@ -1,0 +1,18 @@
+{
+  "enabled": false,
+  "title": "📢 إعلان مهم",
+  "message": "تم إضافة تطبيق جديد! يمكنك الآن الاستمتاع بمحتوى Cineman Box المميز. انضم إلى قناتنا على تيليجرام لتحصل على آخر التحديثات والأخبار.",
+  "buttons": [
+    {
+      "label": "انضم للقناة 📲",
+      "type": "telegram",
+      "url": "https://t.me/Android_AppsX",
+      "style": "primary"
+    },
+    {
+      "label": "حسناً، فهمت",
+      "type": "dismiss",
+      "style": "secondary"
+    }
+  ]
+}

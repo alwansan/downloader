@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>تطبيقاتي</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0d14;
+            --bg-card: #111827;
+            --border: rgba(255,255,255,0.06);
+            --text-primary: #f1f5f9;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+            --accent-orange: #f59e0b;
+            --accent-cyan: #06b6d4;
+            --glow-blue: rgba(59,130,246,0.15);
+            --glow-green: rgba(16,185,129,0.15);
+            --glow-purple: rgba(139,92,246,0.15);
+            --glow-cyan: rgba(6,182,212,0.15);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+        body {
+            font-family:'Tajawal',sans-serif;
+            background-color:var(--bg-primary);
+            color:var(--text-primary);
+            min-height:100svh;
+            display:flex; flex-direction:column; align-items:center;
+            direction:rtl; padding:0 16px;
+            position:relative; overflow-x:hidden;
+        }
+        body::before {
+            content:''; position:fixed; top:-200px; right:-200px;
+            width:500px; height:500px;
+            background:radial-gradient(circle,rgba(59,130,246,0.07) 0%,transparent 70%);
+            pointer-events:none; z-index:0;
+        }
+        body::after {
+            content:''; position:fixed; bottom:-200px; left:-200px;
+            width:500px; height:500px;
+            background:radial-gradient(circle,rgba(139,92,246,0.06) 0%,transparent 70%);
+            pointer-events:none; z-index:0;
+        }
+
+        main {
+            width:100%; max-width:500px; flex:1;
+            display:flex; flex-direction:column;
+            padding:28px 0 20px;
+            position:relative; z-index:1;
+        }
+
+        /* Section label */
+        .section-label {
+            font-size:11px; font-weight:700; color:var(--text-muted);
+            letter-spacing:1.5px; margin-bottom:12px; padding-left:4px;
+            animation:fadeUp 0.4s ease both;
+        }
+
+        /* App Cards */
+        .apps-grid { display:flex; flex-direction:column; gap:10px; margin-bottom:12px; }
+
+        .app-card {
+            display:flex; align-items:center;
+            direction:ltr; /* icon on left, name in middle, arrow on right */
+            background:var(--bg-card); border:1px solid var(--border);
+            border-radius:16px; padding:14px 16px;
+            text-decoration:none; color:inherit;
+            transition:all 0.25s cubic-bezier(0.4,0,0.2,1);
+            position:relative; overflow:hidden;
+            animation:fadeUp 0.5s ease both;
+        }
+        .app-card::before {
+            content:''; position:absolute; inset:0; opacity:0;
+            transition:opacity 0.25s ease; border-radius:inherit;
+        }
+        .app-card.blue::before  { background:var(--glow-blue); }
+        .app-card.green::before { background:var(--glow-green); }
+        .app-card.purple::before{ background:var(--glow-purple); }
+        .app-card.cyan::before  { background:var(--glow-cyan); }
+
+        .app-card:active { transform:scale(0.97); }
+        .app-card:hover::before { opacity:1; }
+        .app-card:hover { border-color:rgba(255,255,255,0.12); transform:translateY(-2px); box-shadow:0 12px 32px rgba(0,0,0,0.3); }
+
+        /* Accent bar on left */
+        .app-card::after {
+            content:''; position:absolute; left:0; top:18%; bottom:18%;
+            width:3px; border-radius:4px 0 0 4px; opacity:0; transition:opacity 0.25s ease;
+        }
+        .app-card.blue::after   { background:var(--accent-blue); }
+        .app-card.green::after  { background:var(--accent-green); }
+        .app-card.purple::after { background:var(--accent-purple); }
+        .app-card.cyan::after   { background:var(--accent-cyan); }
+        .app-card:hover::after  { opacity:1; }
+
+        .app-icon-wrap {
+            width:48px; height:48px; border-radius:13px;
+            display:flex; align-items:center; justify-content:center;
+            flex-shrink:0; margin-right:14px; overflow:hidden;
+            background:rgba(255,255,255,0.05);
+        }
+        .app-icon-wrap img {
+            width:34px; height:34px; object-fit:contain;
+            transition:transform 0.3s ease;
+        }
+        .app-card:hover .app-icon-wrap img { transform:scale(1.1) rotate(5deg); }
+
+        .app-info { flex:1; min-width:0; }
+        .app-name { font-size:17px; font-weight:700; letter-spacing:0.3px; transition:color 0.2s ease; }
+
+        .app-card.blue:hover   .app-name { color:var(--accent-blue); }
+        .app-card.green:hover  .app-name { color:var(--accent-green); }
+        .app-card.purple:hover .app-name { color:var(--accent-purple); }
+        .app-card.cyan:hover   .app-name { color:var(--accent-cyan); }
+
+        .app-arrow {
+            color:var(--text-muted); font-size:20px !important;
+            transition:all 0.25s ease; flex-shrink:0;
+        }
+        .app-card.blue:hover   .app-arrow { color:var(--accent-blue);   transform:translateX(4px); }
+        .app-card.green:hover  .app-arrow { color:var(--accent-green);  transform:translateX(4px); }
+        .app-card.purple:hover .app-arrow { color:var(--accent-purple); transform:translateX(4px); }
+        .app-card.cyan:hover   .app-arrow { color:var(--accent-cyan);   transform:translateX(4px); }
+
+        /* NEW badge */
+        .new-badge {
+            display:inline-flex; align-items:center; gap:3px;
+            background:linear-gradient(135deg,var(--accent-cyan),#0891b2);
+            color:white; font-size:9px; font-weight:800;
+            padding:2px 7px; border-radius:20px; margin-top:4px; letter-spacing:0.5px;
+            animation:pulse-badge 2s ease infinite;
+        }
+        @keyframes pulse-badge {
+            0%,100% { box-shadow:0 0 0 0 rgba(6,182,212,0.4); }
+            50%      { box-shadow:0 0 0 5px rgba(6,182,212,0); }
+        }
+
+        /* Download section */
+        .download-section { margin-top:8px; animation:fadeUp 0.5s ease both; animation-delay:0.42s; }
+
+        .download-card {
+            background:linear-gradient(135deg,rgba(139,92,246,0.12),rgba(59,130,246,0.08));
+            border:1px solid rgba(139,92,246,0.25);
+        }
+        .download-card:hover { border-color:rgba(139,92,246,0.45); box-shadow:0 12px 32px rgba(139,92,246,0.15); }
+
+        .badge {
+            display:inline-block;
+            background:linear-gradient(135deg,var(--accent-purple),var(--accent-blue));
+            color:white; font-size:9px; font-weight:700;
+            padding:2px 7px; border-radius:20px; margin-top:4px; letter-spacing:0.5px;
+        }
+
+        /* Notes */
+        .notes-section {
+            margin-top:24px; display:flex; flex-direction:column; gap:10px;
+            animation:fadeUp 0.5s ease both; animation-delay:0.48s;
+        }
+        .note-card {
+            display:flex; gap:12px; align-items:flex-start;
+            background:rgba(255,255,255,0.03); border:1px solid var(--border);
+            border-radius:14px; padding:14px;
+        }
+        .note-card.warning { border-color:rgba(245,158,11,0.2); background:rgba(245,158,11,0.04); }
+        .note-card.info    { border-color:rgba(59,130,246,0.2);  background:rgba(59,130,246,0.04); }
+        .note-icon {
+            width:32px; height:32px; border-radius:10px;
+            display:flex; align-items:center; justify-content:center;
+            flex-shrink:0; margin-top:1px;
+        }
+        .note-card.warning .note-icon { background:rgba(245,158,11,0.15); color:var(--accent-orange); }
+        .note-card.info    .note-icon { background:rgba(59,130,246,0.15);  color:var(--accent-blue); }
+        .note-icon .material-icons-round { font-size:18px; }
+        .note-content { flex:1; }
+        .note-label { font-size:11px; font-weight:700; letter-spacing:0.8px; margin-bottom:4px; }
+        .note-card.warning .note-label { color:var(--accent-orange); }
+        .note-card.info    .note-label { color:var(--accent-blue); }
+        .note-text { font-size:13px; color:#94a3b8; line-height:1.6; }
+
+        /* Footer */
+        footer {
+            width:100%; max-width:500px; text-align:center;
+            padding:20px 0 28px; color:var(--text-muted); font-size:13px;
+            position:relative; z-index:1;
+        }
+        footer a { color:var(--accent-blue); text-decoration:none; font-weight:600; }
+
+        /* Card animation delays */
+        .app-card:nth-child(1) { animation-delay:0.10s; }
+        .app-card:nth-child(2) { animation-delay:0.16s; }
+        .app-card:nth-child(3) { animation-delay:0.22s; }
+        .app-card:nth-child(4) { animation-delay:0.28s; }
+        .app-card:nth-child(5) { animation-delay:0.34s; }
+
+        @keyframes fadeDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeUp   { from{opacity:0;transform:translateY(16px)}  to{opacity:1;transform:translateY(0)} }
+
+        /* ========== DIALOG ========== */
+        .dialog-overlay {
+            position:fixed; inset:0;
+            background:rgba(0,0,0,0.78); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+            z-index:1000; display:flex; align-items:flex-end; justify-content:center;
+            padding:0 12px 28px; opacity:0; pointer-events:none; transition:opacity 0.3s ease;
+        }
+        .dialog-overlay.visible { opacity:1; pointer-events:all; }
+
+        .dialog-box {
+            background:#141b2d; border:1px solid rgba(255,255,255,0.09); border-radius:26px;
+            width:100%; max-width:480px; padding:24px 22px 22px;
+            transform:translateY(50px) scale(0.96);
+            transition:transform 0.42s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease;
+            opacity:0; box-shadow:0 -4px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+            position:relative; overflow:hidden;
+        }
+        .dialog-box::before {
+            content:''; position:absolute; top:0; left:0; right:0; height:2px;
+            background:linear-gradient(90deg,transparent,var(--accent-blue) 30%,var(--accent-purple) 70%,transparent);
+        }
+        .dialog-overlay.visible .dialog-box { transform:translateY(0) scale(1); opacity:1; }
+
+        .drag-handle { width:36px; height:4px; border-radius:2px; background:rgba(255,255,255,0.15); margin:0 auto 20px; }
+
+        .dialog-header { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+        .dialog-icon-wrap {
+            width:46px; height:46px; border-radius:15px;
+            background:linear-gradient(135deg,rgba(59,130,246,0.18),rgba(139,92,246,0.18));
+            border:1px solid rgba(59,130,246,0.25);
+            display:flex; align-items:center; justify-content:center; flex-shrink:0;
+        }
+        .dialog-icon-wrap .material-icons-round { color:var(--accent-blue); font-size:24px; }
+        .dialog-title-wrap { flex:1; }
+        .dialog-title { font-size:17px; font-weight:800; }
+        .dialog-subtitle { font-size:11px; color:var(--text-muted); margin-top:2px; }
+        .dialog-close {
+            width:34px; height:34px; border-radius:10px; background:rgba(255,255,255,0.06);
+            border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;
+            color:var(--text-muted); transition:all 0.2s ease; flex-shrink:0;
+        }
+        .dialog-close:hover { background:rgba(255,255,255,0.11); color:var(--text-primary); }
+        .dialog-close .material-icons-round { font-size:18px; }
+
+        .dialog-divider { height:1px; background:var(--border); margin-bottom:16px; }
+        .dialog-message { font-size:14px; color:#94a3b8; line-height:1.75; margin-bottom:20px; }
+
+        .dialog-remember {
+            display:flex; align-items:center; gap:10px; margin-bottom:18px;
+            cursor:pointer; user-select:none;
+            background:rgba(255,255,255,0.03); border:1px solid var(--border);
+            border-radius:12px; padding:12px; transition:all 0.2s ease;
+        }
+        .dialog-remember:hover { background:rgba(255,255,255,0.05); }
+        .dialog-remember input[type="checkbox"] { display:none; }
+        .custom-checkbox {
+            width:22px; height:22px; border-radius:7px;
+            border:2px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.04);
+            display:flex; align-items:center; justify-content:center; flex-shrink:0;
+            transition:all 0.2s ease;
+        }
+        .custom-checkbox .material-icons-round { font-size:14px; color:white; opacity:0; transform:scale(0.5); transition:all 0.15s ease; }
+        .dialog-remember.checked .custom-checkbox { background:var(--accent-blue); border-color:var(--accent-blue); box-shadow:0 0 0 3px rgba(59,130,246,0.2); }
+        .dialog-remember.checked .custom-checkbox .material-icons-round { opacity:1; transform:scale(1); }
+        .remember-texts { flex:1; }
+        .remember-label { font-size:13px; color:var(--text-primary); font-weight:500; display:block; }
+        .remember-sub   { font-size:11px; color:var(--text-muted); margin-top:1px; display:block; }
+
+        .dialog-actions { display:flex; flex-direction:column; gap:9px; }
+        .dialog-btn {
+            display:flex; align-items:center; justify-content:center; gap:8px;
+            width:100%; padding:15px; border-radius:15px; border:none; cursor:pointer;
+            font-family:'Tajawal',sans-serif; font-size:15px; font-weight:700;
+            transition:all 0.2s ease; text-decoration:none;
+        }
+        .dialog-btn:active { transform:scale(0.97); }
+        .dialog-btn.primary { background:linear-gradient(135deg,var(--accent-blue),var(--accent-purple)); color:white; box-shadow:0 4px 18px rgba(59,130,246,0.35); }
+        .dialog-btn.primary:hover { box-shadow:0 6px 28px rgba(59,130,246,0.5); transform:translateY(-1px); }
+        .dialog-btn.secondary { background:rgba(255,255,255,0.06); color:var(--text-muted); border:1px solid var(--border); }
+        .dialog-btn.secondary:hover { background:rgba(255,255,255,0.1); color:var(--text-primary); }
+        .dialog-btn .material-icons-round { font-size:18px; }
+    </style>
+</head>
+<body>
+
+    <!-- DIALOG -->
+    <div class="dialog-overlay" id="dialogOverlay">
+        <div class="dialog-box">
+            <div class="drag-handle"></div>
+            <div class="dialog-header">
+                <div class="dialog-icon-wrap">
+                    <span class="material-icons-round">campaign</span>
+                </div>
+                <div class="dialog-title-wrap">
+                    <div class="dialog-title" id="dialogTitle">...</div>
+                    <div class="dialog-subtitle">إعلان من الإدارة</div>
+                </div>
+                <button class="dialog-close" onclick="closeDialog()">
+                    <span class="material-icons-round">close</span>
+                </button>
+            </div>
+            <div class="dialog-divider"></div>
+            <p class="dialog-message" id="dialogMessage"></p>
+
+            <label class="dialog-remember" id="rememberLabel" onclick="toggleRemember()">
+                <input type="checkbox" id="rememberCheck">
+                <div class="custom-checkbox">
+                    <span class="material-icons-round">check</span>
+                </div>
+                <div class="remember-texts">
+                    <span class="remember-label">تذكرني</span>
+                    <span class="remember-sub">لا تعرض هذا الإعلان مجدداً</span>
+                </div>
+            </label>
+
+            <div class="dialog-actions" id="dialogActions"></div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <main>
+        <div class="section-label">التطبيقات المتاحة</div>
+
+        <div class="apps-grid">
+            <a href="cinemana/index.html" class="app-card blue">
+                <div class="app-icon-wrap"><img src="image1.png" alt="سينمانا"></div>
+                <div class="app-info"><div class="app-name">CINEMANA</div></div>
+                <span class="material-icons-round app-arrow">arrow_forward_ios</span>
+            </a>
+
+            <a href="cee/index.html" class="app-card green">
+                <div class="app-icon-wrap"><img src="image2.png" alt="CEE"></div>
+                <div class="app-info"><div class="app-name">CEE</div></div>
+                <span class="material-icons-round app-arrow">arrow_forward_ios</span>
+            </a>
+
+            <a href="shashety/index.html" class="app-card green">
+                <div class="app-icon-wrap"><img src="image4.png" alt="شاشتي"></div>
+                <div class="app-info"><div class="app-name">SHASHETY</div></div>
+                <span class="material-icons-round app-arrow">arrow_forward_ios</span>
+            </a>
+
+            <a href="aflaame/index.html" class="app-card green">
+                <div class="app-icon-wrap"><img src="image5.png" alt="أفلامي"></div>
+                <div class="app-info"><div class="app-name">AFLAAME</div></div>
+                <span class="material-icons-round app-arrow">arrow_forward_ios</span>
+            </a>
+
+            <a href="cineman-box/index.html" class="app-card cyan">
+                <div class="app-icon-wrap"><img src="cinemabox.webp" alt="Cineman Box"></div>
+                <div class="app-info">
+                    <div class="app-name">CINEMAN BOX</div>
+                    <div class="new-badge">
+                        <span class="material-icons-round" style="font-size:10px">auto_awesome</span>
+                        جديد
+                    </div>
+                </div>
+                <span class="material-icons-round app-arrow">arrow_forward_ios</span>
+            </a>
+        </div>
+
+        <div class="download-section">
+            <div class="section-label">أداة التحميل</div>
+            <a href="https://t.me/Android_AppsX/465" class="app-card purple download-card">
+                <div class="app-icon-wrap"><img src="image3.png" alt="1DM"></div>
+                <div class="app-info">
+                    <div class="app-name">1DM Pro</div>
+                    <div class="badge">مُوصى به</div>
+                </div>
+                <span class="material-icons-round app-arrow">arrow_forward_ios</span>
+            </a>
+        </div>
+
+        <div class="notes-section">
+            <div class="note-card warning">
+                <div class="note-icon"><span class="material-icons-round">wifi_tethering_error</span></div>
+                <div class="note-content">
+                    <div class="note-label">⚠ ملاحظة</div>
+                    <div class="note-text">لا يمكنك فتح كل التطبيقات، فقط التطبيقات المدعومة على شبكتك شغّالة.</div>
+                </div>
+            </div>
+            <div class="note-card info">
+                <div class="note-icon"><span class="material-icons-round">download_for_offline</span></div>
+                <div class="note-content">
+                    <div class="note-label">ℹ معلومة مهمة</div>
+                    <div class="note-text">يجب استخدام تطبيق <strong style="color:#c4b5fd">1DM</strong> لتحميل الملفات لأنه أفضل تطبيق ويدعم الاستكمال عند حصول أخطاء.</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        Made with ♥ by <a href="https://t.me/Android_AppsX">@Android_AppsX</a>
+    </footer>
+
+    <script>
+        const STORAGE_KEY = 'announcement_dismissed_v1';
+        let rememberChecked = false;
+
+        function toggleRemember() {
+            rememberChecked = !rememberChecked;
+            const label = document.getElementById('rememberLabel');
+            rememberChecked ? label.classList.add('checked') : label.classList.remove('checked');
+        }
+
+        function closeDialog() {
+            if (rememberChecked) localStorage.setItem(STORAGE_KEY, 'true');
+            document.getElementById('dialogOverlay').classList.remove('visible');
+        }
+
+        function buildButtons(buttons) {
+            const container = document.getElementById('dialogActions');
+            container.innerHTML = '';
+            buttons.forEach(btn => {
+                if (btn.type === 'telegram') {
+                    const a = document.createElement('a');
+                    a.href = btn.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+                    a.className = 'dialog-btn ' + btn.style;
+                    a.innerHTML = '<span class="material-icons-round">send</span>' + btn.label;
+                    container.appendChild(a);
+                } else if (btn.type === 'dismiss') {
+                    const b = document.createElement('button');
+                    b.className = 'dialog-btn ' + btn.style;
+                    b.innerHTML = '<span class="material-icons-round">check_circle</span>' + btn.label;
+                    b.onclick = closeDialog;
+                    container.appendChild(b);
+                }
+            });
+        }
+
+        async function loadAnnouncement() {
+            if (localStorage.getItem(STORAGE_KEY) === 'true') return;
+            try {
+                const res = await fetch('dialog.json?v=' + Date.now());
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!data.enabled) return;
+                document.getElementById('dialogTitle').textContent = data.title;
+                document.getElementById('dialogMessage').textContent = data.message;
+                buildButtons(data.buttons);
+                setTimeout(() => document.getElementById('dialogOverlay').classList.add('visible'), 700);
+            } catch(e) { console.warn('dialog.json error:', e); }
+        }
+
+        document.getElementById('dialogOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeDialog();
+        });
+
+        loadAnnouncement();
+    </script>
+</body>
+</html>

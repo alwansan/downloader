@@ -1,0 +1,32 @@
+.card-button {
+    @apply bg-gray-800 rounded-lg shadow-md overflow-hidden transition duration-300;
+ }
+ 
+ .card-button:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+ }
+
+ .card-button-content {
+    @apply p-6 text-center;
+ }
+ 
+ .card-button-title {
+    @apply text-xl font-semibold mb-2;
+ }
+ 
+ .card-button.blue {
+    background-color: #3b82f6;
+ }
+ 
+ .card-button.blue:hover {
+    background-color: #2563eb;
+ }
+ 
+ .card-button.green {
+    background-color: #22c55e;
+ }
+ 
+ .card-button.green:hover {
+    background-color: #16a34a;
+ }
