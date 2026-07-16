@@ -1,0 +1,19 @@
+{
+  "enabled": false,
+  "force_update": false,
+  "title": "@Android_AppsX",
+  "message": "Join our Telegram Channel.",
+  "buttons": [
+    {
+      "text": "Join Now",
+      "action": "url",
+      "target": "https://t.me/Android_AppsX",
+      "style": "primary"
+    },
+    {
+      "text": "Later",
+      "action": "dismiss",
+      "style": "secondary"
+    }
+  ]
+}
