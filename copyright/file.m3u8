@@ -1,0 +1,17 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-TARGETDURATION:1000
+
+#EXTINF:-1, Quality 360p
+https://iraqapps.github.io/downloader/copyright/1.mp4
+
+#EXTINF:-1, Quality 480p
+https://iraqapps.github.io/downloader/copyright/2.mp4
+
+#EXTINF:-1, Quality 720p
+https://iraqapps.github.io/downloader/copyright/3.mp4
+
+#EXTINF:-1, Quality 1080p
+https://iraqapps.github.io/downloader/copyright/4.mp4
+
+#EXT-X-ENDLIST
