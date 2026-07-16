@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>سينما | أفلام ومسلسلات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="features.css"> <!-- إضافة جديدة: تنسيقات الميزات -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-inner">
+            <div class="header-brand">
+                <span class="brand-icon material-icons-round">movie_filter</span>
+                <span class="brand-name">سينـمانا</span>
+            </div>
+            <div class="search-wrapper">
+                <span class="material-icons-round search-icon-inner">search</span>
+                <input type="text" id="searchInput" placeholder="ابحث عن فيلم أو مسلسل..." 
+                       class="search-field" aria-label="حقل البحث">
+                <button id="searchButton" class="search-btn" aria-label="زر البحث">
+                    <span class="material-icons-round">arrow_back_ios</span>
+                </button>
+            </div>
+
+
+        </div>
+    </header>
+
+    <!-- Filter Bars (in main content) -->
+    <div id="filter-buttons-container" class="filter-bar hidden">
+        <button id="filterMovies" class="filter-tab active-tab">
+            <span class="material-icons-round">movie</span> أفلام
+        </button>
+        <button id="filterSeries" class="filter-tab">
+            <span class="material-icons-round">live_tv</span> مسلسلات
+        </button>
+    </div>
+
+    <div id="category-filter-buttons-container" class="filter-bar hidden">
+        <button id="categoryFilterMovies" class="filter-tab active-tab">
+            <span class="material-icons-round">movie</span> أفلام
+        </button>
+        <button id="categoryFilterSeries" class="filter-tab">
+            <span class="material-icons-round">live_tv</span> مسلسلات
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-content">
+
+        <!-- Home: Movie/Series Groups -->
+        <div id="movie-series-list">
+            <div class="loading-state">
+                <div class="spinner"></div>
+                <p>جاري تحميل المحتوى...</p>
+            </div>
+        </div>
+
+        <!-- Categories Grid -->
+        <div id="categories-section" class="section-panel hidden">
+            <h2 class="section-heading">
+                <span class="material-icons-round">grid_view</span> الأقسام
+            </h2>
+            <div id="categories-list" class="categories-grid">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>جاري تحميل الأقسام...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Content -->
+        <div id="category-content-section" class="section-panel hidden">
+            <button class="back-btn" onclick="handleGlobalBackButtonClick()">
+                <span class="material-icons-round">arrow_forward_ios</span> رجوع
+            </button>
+            <h2 id="category-content-title" class="section-heading with-border"></h2>
+            <div id="category-content-list" class="content-grid">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>جاري تحميل المحتوى...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Details Section -->
+        <div id="details-section" class="section-panel hidden">
+            <button class="back-btn" onclick="handleGlobalBackButtonClick()">
+                <span class="material-icons-round">arrow_forward_ios</span> رجوع
+            </button>
+
+            <div class="details-hero">
+                <div class="details-poster-wrap">
+                    <img id="details-poster" src="" alt="بوستر" class="details-poster">
+                    <div class="poster-glow"></div>
+                </div>
+                <div class="details-info">
+                    <h2 id="details-title" class="details-title"></h2>
+                    <div class="details-meta">
+                        <span id="details-year" class="meta-badge"></span>
+                        <span id="details-duration" class="meta-badge"></span>
+                        <span id="details-stars" class="meta-badge rating-badge"></span>
+                    </div>
+                    <p id="details-categories" class="details-cats"></p>
+                    <p id="details-description" class="details-desc"></p>
+                    <div class="details-actions">
+                        <button id="watchDownloadBtn" class="action-btn primary-btn hidden">
+                            <span class="material-icons-round">download</span> جلب معلومات التحميل
+                        </button>
+                        <button id="favoriteButton" class="action-btn secondary-btn">
+                            <span class="material-icons-round">star_border</span> إضافة للمفضلة
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="seasons-list" class="seasons-list hidden">
+                <h3 class="seasons-title">
+                    <span class="material-icons-round">video_library</span> المواسم والحلقات
+                </h3>
+            </div>
+        </div>
+
+        <!-- Quality Options -->
+        <div id="quality-options-section" class="section-panel hidden">
+            <button class="back-btn" onclick="handleGlobalBackButtonClick()">
+                <span class="material-icons-round">arrow_forward_ios</span> رجوع
+            </button>
+            <h2 id="quality-title" class="section-heading">
+                <span class="material-icons-round">high_quality</span> اختيار الجودة
+            </h2>
+            <div id="quality-list" class="quality-list"></div>
+        </div>
+
+        <!-- Favorites Section -->
+        <div id="favorites-section" class="section-panel hidden">
+            <button class="back-btn" onclick="handleGlobalBackButtonClick()">
+                <span class="material-icons-round">arrow_forward_ios</span> رجوع
+            </button>
+            <h2 class="section-heading">
+                <span class="material-icons-round">favorite</span> المفضلة
+            </h2>
+            <div id="favorites-list" class="content-grid">
+                <div class="empty-state">
+                    <span class="material-icons-round empty-icon">favorite_border</span>
+                    <p>لا توجد عناصر في المفضلة حتى الآن</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" id="home-nav" aria-label="الرئيسية">
+            <span class="material-icons-round nav-icon">home</span>
+            <span class="nav-label">الرئيسية</span>
+        </a>
+        <a href="#" class="nav-item" id="search-nav" aria-label="بحث">
+            <span class="material-icons-round nav-icon">search</span>
+            <span class="nav-label">بحث</span>
+        </a>
+        <a href="#" class="nav-item" id="categories-nav" aria-label="الأقسام">
+            <span class="material-icons-round nav-icon">grid_view</span>
+            <span class="nav-label">الأقسام</span>
+        </a>
+        <a href="#" class="nav-item" id="favorites-nav" aria-label="المفضلة">
+            <span class="material-icons-round nav-icon">favorite</span>
+            <span class="nav-label">المفضلة</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+    <script src="features.js"></script> <!-- إضافة جديدة: الميزات الإضافية فقط -->
+</body>
+</html>

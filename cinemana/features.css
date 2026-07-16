@@ -1,0 +1,172 @@
+/* =============================================
+   FEATURES ADD-ON STYLES
+   ملف جديد بالكامل لا يعدّل أي شيء في style.css
+   يحتوي فقط على تنسيقات الميزات الإضافية:
+   - صندوق البحث عن الحلقات (رقم واحد / نطاق من-إلى)
+   - شريط التنقل بين الحلقات + زر بدء التحميل في صفحة الجودة
+   ============================================= */
+
+/* ---------- صندوق البحث عن الحلقات (داخل seasons-list) ---------- */
+.ep-search-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    margin: 10px 0 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ep-search-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+}
+
+.ep-search-icon { color: var(--text-muted); font-size: 20px; }
+
+.ep-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-family: var(--font);
+    font-size: 14px;
+    padding: 6px 4px;
+    min-width: 0;
+}
+
+.ep-search-input::placeholder { color: var(--text-muted); }
+
+.ep-search-clear-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 4px;
+}
+.ep-search-clear-btn:active { color: var(--accent); }
+
+.ep-search-range-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.ep-range-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.ep-range-input {
+    flex: 1;
+    min-width: 60px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    padding: 8px 10px;
+    text-align: center;
+}
+
+.ep-range-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.ep-range-btn:active { opacity: 0.85; transform: scale(0.97); }
+
+.ep-search-status {
+    font-size: 12px;
+    color: var(--text-secondary);
+    min-height: 14px;
+}
+
+/* ---------- شريط التنقل بين الحلقات + زر بدء التحميل (صفحة الجودة) ---------- */
+.ep-nav-bar {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    margin-bottom: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ep-nav-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+}
+.ep-nav-info .material-icons-round { color: var(--accent); }
+
+.ep-nav-title {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.ep-nav-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.ep-nav-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-light);
+    color: var(--text-primary);
+    border-radius: var(--radius-sm);
+    padding: 9px 8px;
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.ep-nav-btn:active { background: var(--accent-glow); border-color: var(--accent); }
+.ep-nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.ep-start-download-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 11px 14px;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.ep-start-download-btn:active { opacity: 0.85; transform: scale(0.98); }
+
+.ep-download-status {
+    font-size: 12px;
+    color: var(--text-secondary);
+    min-height: 14px;
+    text-align: center;
+}
